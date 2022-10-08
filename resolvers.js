@@ -10,6 +10,15 @@ const resolvers = {
         "Error in getAllPosts resolver: ", error;
       }
     },
+    getPost: async (parent, args, context, info) => {
+      const { id } = args;
+
+      try {
+        return await Post.findById(id);
+      } catch (error) {
+        "Error in getPost resolver: ", error;
+      }
+    },
   },
 
   Mutation: {
@@ -21,7 +30,16 @@ const resolvers = {
         const savedPost = newPost.save();
         return savedPost;
       } catch (error) {
-        console.log("error:", error);
+        "Error in createPost resolver: ", error;
+      }
+    },
+    deletePost: async (parent, args, context, info) => {
+      const { id } = args;
+
+      try {
+        await Post.findByIdAndDelete(id);
+        return `Post with id ${id} deleted`;
+      } catch (error) {
         "Error in createPost resolver: ", error;
       }
     },
