@@ -16,14 +16,12 @@ async function startServer() {
 
   app.use((req, res) => res.send("Hello from express-apollo server"));
 
-  console.log("process.env.MONGO_DB_URL:", process.env.MONGO_DB_URL);
-
   await mongoose.connect(`${process.env.MONGO_DB_URL}`, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
 
-  console.log("Mongoose connected! ");
+  console.log("Mongoose connected!");
 
   app.listen(`${process.env.PORT}`, () =>
     console.log("Server initialized on PORT 4000")
