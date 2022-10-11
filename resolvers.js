@@ -43,6 +43,21 @@ const resolvers = {
         "Error in createPost resolver: ", error;
       }
     },
+    updatePost: async (parent, args, context, info) => {
+      const { id } = args;
+      const { title, description } = args.post;
+
+      try {
+        const post = Post.findByIdAndUpdate(
+          id,
+          { title, description },
+          { new: true }
+        );
+        return post;
+      } catch (error) {
+        "Error in update post resolver: ", error;
+      }
+    },
   },
 };
 
