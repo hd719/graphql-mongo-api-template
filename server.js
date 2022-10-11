@@ -14,6 +14,8 @@ async function startServer() {
   await apolloServer.start(); // recommended to start the apollo server first, before listening to the app on any port
   apolloServer.applyMiddleware({ app }); // default path is localhost:4000/graphql
 
+  app.use(cors());
+
   app.use((req, res) => res.send("Hello from express-apollo server"));
 
   await mongoose.connect(`${process.env.MONGO_DB_URL}`, {
@@ -24,7 +26,7 @@ async function startServer() {
   console.log("Mongoose connected!");
 
   app.listen(`${process.env.PORT}`, () =>
-    console.log("Server initialized on PORT 4000")
+    console.log(`Server running on port ${process.env.PORT}`)
   );
 }
 

@@ -1,5 +1,7 @@
 const { gql } = require("apollo-server-express");
 
+// typeDefs is a string that contains the schema definition language (SDL) for our schema, Scalar Types -> String, Int, Boolean, ID, Float
+
 const typeDefs = gql`
   type Post {
     id: ID!
